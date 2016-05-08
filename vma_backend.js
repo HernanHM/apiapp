@@ -36,7 +36,7 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(bodyParser.json());
 
-var port = process.env.PORT || 8000;
+var port = process.env.PORT || 80;
 
 // =============================================================================//
 
