@@ -12,6 +12,7 @@ var express = require('express'); // call express web server framework
 var app = express(); // define our app using express
 var bodyParser = require('body-parser'); // call body-parser to parse the content to be transmitted
 var mysql = require('mysql'); // call mysql controllers
+var fs = require('fs');
 //var traverse = require ('traverse');
 
 //DB concurrent connections definition, very important for production environment, should be in line to what we defined PM2.
@@ -24,7 +25,10 @@ var pool = mysql.createPool({
     debug: false,
     database: 'vma_db',
     dateStrings: 'date',
-    protocol: 'mysql'
+    protocol: 'mysql',
+    ssl  : {
+            ca : fs.readFileSync(__dirname + '/cleardb-ca.pem')
+        }
 });
 
 //Configure Cors to allow cross domain calls
